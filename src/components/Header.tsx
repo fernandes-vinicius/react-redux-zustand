@@ -1,9 +1,14 @@
-import { useAppSelector } from '../store'
-import { useCurrentLesson } from '../store/slices/player'
+import { useCurrentLesson, useStore } from '../store-zustand'
+
+// import { useAppSelector } from '../store'
+// import { useCurrentLesson } from '../store/slices/player'
 
 export function Header() {
-  const { currentModule, currentLesson } = useCurrentLesson()
-  const isCourseLoading = useAppSelector((state) => state.player.isLoading)
+  const { currentLesson, currentModule } = useCurrentLesson()
+  const isCourseLoading = useStore((store) => store.isLoading)
+
+  // const { currentModule, currentLesson } = useCurrentLesson()
+  // const isCourseLoading = useAppSelector((state) => state.player.isLoading)
 
   // Skeleton
   if (isCourseLoading) {

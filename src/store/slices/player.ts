@@ -1,7 +1,8 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 import { useAppSelector } from '..'
-import { api } from '../../lib/axios'
+import serverJson from '../../../server.json'
+// import { api } from '../../lib/axios'
 
 interface Course {
   id: number
@@ -31,9 +32,12 @@ const initialState: PlayerState = {
 }
 
 export const loadCourse = createAsyncThunk('player/load', async () => {
-  const response = await api.get('/courses/1')
+  await new Promise((resolve) => setTimeout(resolve, 1000)) // force delay
+  return serverJson.courses[0]
 
-  return response.data
+  /** Uncomment the lines below if you want to use fetch data using json-server */
+  // const response = await api.get('/courses/1')
+  // return response.data
 })
 
 const playerSlice = createSlice({

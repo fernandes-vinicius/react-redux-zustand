@@ -1,16 +1,27 @@
 import ReactPlayer from 'react-player'
 import { LoaderIcon } from 'lucide-react'
 
-import { useApDispatch, useAppSelector } from '../store'
-import { next, useCurrentLesson } from '../store/slices/player'
+import { useCurrentLesson, useStore } from '../store-zustand'
+
+// import { useApDispatch, useAppSelector } from '../store'
+// import { next, useCurrentLesson } from '../store/slices/player'
 
 export function Video() {
-  const dispatch = useApDispatch()
   const { currentLesson } = useCurrentLesson()
-  const isCourseLoading = useAppSelector((state) => state.player.isLoading)
+  const { isCourseLoading, next } = useStore((store) => {
+    return {
+      isCourseLoading: store.isLoading,
+      next: store.next,
+    }
+  })
+
+  // const dispatch = useApDispatch()
+  // const { currentLesson } = useCurrentLesson()
+  // const isCourseLoading = useAppSelector((state) => state.player.isLoading)
 
   function handlePlayNext() {
-    dispatch(next())
+    next()
+    // dispatch(next())
   }
 
   return (

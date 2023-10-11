@@ -59,13 +59,13 @@ describe('player slice', () => {
     expect(state.currentLessonIndex).toEqual(0)
   })
 
+  // TODO fix test error
   it('should not update the current module and lesson index if there is no next lesson available', () => {
     const state = reducer(
       { ...exampleState, currentModuleIndex: 1, currentLessonIndex: 1 },
       next(),
     )
 
-    // TODO fix test error
     expect(state.currentModuleIndex).toEqual(1)
     expect(state.currentLessonIndex).toEqual(1)
   })
